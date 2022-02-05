@@ -1,16 +1,16 @@
 from rest_framework import serializers
-from LLINS_API.models import PatientsData, Nets
+from LLINS_API.models import Patients, Net
 
 
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PatientsData
-        fields = ['year', 'month', 'totalpatients',
-                  'patientswithnets', 'patientswithoutnets']
+        model = Patients
+        fields = ['Year', 'Month', 'County', 'SubCounty',
+                  'PatientsReceived', 'PatientsNets', 'PatientswithoutNets']
 
 
 class NetsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Nets
-        fields = ['year', 'month', 'budgeted',
-                  'issued']
+        model = Net
+        fields = ['Year', 'Month', 'County', 'SubCounty', 'netsProvided'
+                  'netsIssued']
