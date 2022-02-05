@@ -1,0 +1,55 @@
+
+[{
+
+    "2017": {
+        
+        "january": 800,
+        "february": 1500,
+        "march": 3000,
+        "april": 5000,
+        "may": 4000,
+        "june": 2000,
+        "july": 7000,
+        "august":4000,
+        "september":3000,
+        "october": 6000,
+        "November": 8000,
+        "december": 9000
+    
+    },
+
+    "2018": {
+        "january": 2000,
+        "february":3000,
+        "march": 8000,
+        "april": 6000,
+        "may": 6000,
+        "june": 6000,
+        "july": 5000,
+        "august":8000,
+        "september":3000,
+        "october": 9000,
+        "November": 1000,
+        "december": 10000
+    },
+       
+    "2019": {
+        "january": 2000,
+        "february":10000,
+        "march": 12000,
+        "april": 13000,
+        "may": 11000,
+        "june": 12000,
+        "july": 14000,
+        "august":13000,
+        "september":11000,
+        "october": 15000,
+        "November": 16000,
+        "december": 16000
+    }
+
+
+}
+       
+]
+   

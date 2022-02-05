@@ -1,2 +1,2 @@
-# Backend-LLINS-Hackathon
-A backend for the LLINS-Hackathon- g5
+# LLINS-Hackathon-g5
+Visualization of service data and facility issues data to enhance accountability.
