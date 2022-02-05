@@ -9,10 +9,9 @@ class PatientsData(models.Model):
     patientswithnets = models.IntegerField()
     patientswithoutnets = models.IntegerField()
 
-    class Meta:
-        ordering = ['year']
-
 
 class Nets(models.Model):
+    year = models.IntegerField()
+    month = models.CharField(max_length=10)
     budgeted = models.IntegerField()
     issued = models.IntegerField()

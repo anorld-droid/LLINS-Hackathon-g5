@@ -1,14 +1,14 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from LLINS_API.models import PatientsData
-from LLINS_API.serializers import PatientSerializer
+from LLINS_API.models import PatientsData, Nets
+from LLINS_API.serializers import PatientSerializer, NetsSerializer
 
 
 @csrf_exempt
 def patient_data_list(request):
     """
-    List all patints data, or create a new snippet.
+    List all patints data
     """
     if request.method == 'GET':
         patients = PatientsData.objects.all()
@@ -49,3 +49,22 @@ def patient_data_detail(request, pk):
     elif request.method == 'DELETE':
         patientdata.delete()
         return HttpResponse(status=204)
+
+
+@csrf_exempt
+def nets_list(request):
+    """
+    List all patints data, or create a new snippet.
+    """
+    if request.method == 'GET':
+        nets = Nets.objects.all()
+        serializer = NetsSerializer(nets, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = NetsSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
