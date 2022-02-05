@@ -1,37 +1,51 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-
-# third parties imports
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import viewsets
-from django.contrib.auth.models import User
-from LLINS_API.serializers import UserSerializer
-from rest_framework import permissions
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from LLINS_API.models import PatientsData
+from LLINS_API.serializers import PatientSerializer
 
 
-class TestView(APIView):
-    def get(self, request, *args, **kwargs):
-        data = {
-            "name": "Patrice",
-            "age": 21,
-            "course": "Computer Science"
-        }
-        return Response(data)
-
-
-class UserViewSet(viewsets.ModelViewSet):
+@csrf_exempt
+def patient_data_list(request):
     """
-    API endpoint that allows users to be viewed or edited.
+    List all patints data, or create a new snippet.
     """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    if request.method == 'GET':
+        patients = PatientsData.objects.all()
+        serializer = PatientSerializer(patients, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
-# def test_view(request):
-#     data = {
-#         "name": "Patrice",
-#         "age": 21,
-#         "course": "Computer Science"
-#     }
-#     return JsonResponse(data)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = PatientSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+
+@csrf_exempt
+def patient_data_detail(request, pk):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        patientdata = PatientsData.objects.get(pk=pk)
+    except PatientsData.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = PatientSerializer(patientdata)
+        return JsonResponse(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = PatientSerializer(patientdata, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        patientdata.delete()
+        return HttpResponse(status=204)
