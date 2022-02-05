@@ -6,6 +6,5 @@ urlpatterns = [
     path('', admin.site.urls),
     path('patients/', views.patient_data_list),
     path('patints/<int:pk>/', views.patient_data_detail),
+    path('nets/', views.nets_list),
 ]
-
-urlpatterns = format_suffix_patterns(urlpatterns)
