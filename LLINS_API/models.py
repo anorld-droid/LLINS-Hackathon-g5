@@ -4,7 +4,7 @@ from django.db import models
 
 class PatientsData(models.Model):
     year = models.IntegerField()
-    month = models.CharField(maxlength=10)
+    month = models.CharField()
     totalpatients = models.IntegerField()
     patientswithnets = models.IntegerField()
     patientswithoutnets = models.IntegerField()
