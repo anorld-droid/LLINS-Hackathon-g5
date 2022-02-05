@@ -6,11 +6,13 @@ import urllib,json
 
 # Create your views here.
 url='https://api.covid19india.org/data.json'
-def index(request):
-    return render(request,'index.html')
+
+def dashboard(request):
+    context={}
+    return render(request,'dashboard.html',context)
 
 
-def home(request):
+def combined(request):
     res=urllib.request.urlopen(url)
     data=json.loads(res.read())
 

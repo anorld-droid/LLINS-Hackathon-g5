@@ -3,6 +3,7 @@
 from django.urls import path, include
 
 urlpatterns = [
+    
     path('charts/', include('consume.urls')),
     path('', include('LLINS_API.urls')),
 
