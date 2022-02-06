@@ -1,7 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from LLINS_API.models import PatientsData, Nets
+from LLINS_API.models import Patients, Net
 from LLINS_API.serializers import PatientSerializer, NetsSerializer
 
 
@@ -11,7 +11,7 @@ def patient_data_list(request):
     List all patints data
     """
     if request.method == 'GET':
-        patients = PatientsData.objects.all()
+        patients = Patients.objects.all()
         serializer = PatientSerializer(patients, many=True)
         return JsonResponse(serializer.data, safe=False)
 
@@ -30,8 +30,8 @@ def patient_data_detail(request, pk):
     Retrieve, update or delete a code snippet.
     """
     try:
-        patientdata = PatientsData.objects.get(pk=pk)
-    except PatientsData.DoesNotExist:
+        patientdata = Patients.objects.get(pk=pk)
+    except Patients.DoesNotExist:
         return HttpResponse(status=404)
 
     if request.method == 'GET':
@@ -57,7 +57,7 @@ def nets_list(request):
     List all patints data, or create a new snippet.
     """
     if request.method == 'GET':
-        nets = Nets.objects.all()
+        nets = Net.objects.all()
         serializer = NetsSerializer(nets, many=True)
         return JsonResponse(serializer.data, safe=False)
 
