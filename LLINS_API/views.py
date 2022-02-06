@@ -31,7 +31,7 @@ def patient_data_detail(request, pk):
     """
     try:
         patientdata = Patients.objects.get(pk=pk)
-    except PatientsData.DoesNotExist:
+    except Patients.DoesNotExist:
         return HttpResponse(status=404)
 
     if request.method == 'GET':
