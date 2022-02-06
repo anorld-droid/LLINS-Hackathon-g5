@@ -264,65 +264,50 @@
 
                                 <!-- Replace main-chart with the chart.js -->
                                 <div> 
-                                    <h5 class="justify-center">2019 Dataset</h5>
-                                    <canvas id="myChart2019"></canvas>
+                                    <canvas id="myChart"></canvas>
                                   </div>
-                                        {% for year in years %}
-                                            {% if year == 2019  %}
-
-                                                {% for county in counties %}
-                                                    {% if county == 'kisumu'  %}
-                                                    
-                                                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                                    <script type="text/JavaScript">
-                                                    const labels  ={{labels|safe}}
-                                                    
-                                                    const data = {
-                                                        labels: labels,
-                                                        datasets: [
-                                                        {
-                                                        label: 'PatientsReceived',
-                                                        backgroundColor: 'rgb(255, 99, 132)',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        data: {{PatientsReceived|safe}},
-
-                                                        },  {
-                                                        label: 'PatientsNets',
-                                                        backgroundColor: 'rgb(	rgb(216,191,216))',
-                                                        borderColor: 'rgb(216,191,216))',
-                                                        data: {{PatientsNets|safe}},
-                                                        type:'line'
-
-                                                        },
-                                                        {
-                                                        label: 'PatientswithoutNets',
-                                                        backgroundColor: 'rgb(0,191,255)',
-                                                        borderColor: 'rgb(0,191,255)',
-                                                        data: {{PatientswithoutNets|safe}},
-                                                        },
-                                                        ]
-                                                    };
-                                                    
-                                                    const config = {
-                                                        type: 'line',
-                                                        data: data,
-                                                        options: {}
-                                                    };
-                                                    const myChart = new Chart(
-                                                        document.getElementById('myChart2019'),
-                                                        config
-                                                    );
-                                                    </script>
-                                                    {% endif %}
-                                                {% endfor %}
-                                               
-
-                                            {% endif %}
-                                        {% endfor %}
                               
-                              
-                                        
-                                
+                                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                    <script type="text/JavaScript">
+                                      const labels  ={{labels|safe}}
+                                    
+                                      const data = {
+                                        labels: labels,
+                                        datasets: [
+                                          {
+                                          label: 'chartdata',
+                                          backgroundColor: 'rgb(255, 99, 132)',
+                                          borderColor: 'rgb(255, 99, 132)',
+                                          data: {{chartdata|safe}},
+
+                                        },  {
+                                          label: 'deathsdata',
+                                          backgroundColor: 'rgb(	rgb(216,191,216))',
+                                          borderColor: 'rgb(255, 99, 132)',
+                                          data: {{deathsdata|safe}},
+                                          tension:0.4,
+                                          type:'bar'
+
+                                        },
+                                        {
+                                          label: 'activedata',
+                                          backgroundColor: 'rgb(0,191,255)',
+                                          borderColor: 'rgb(255, 99, 132)',
+                                          data: {{activedata|safe}},
+                                        },
+                                        ]
+                                      };
+                                    
+                                      const config = {
+                                        type: 'bar',
+                                        data: data,
+                                        options: {}
+                                      };
+                                      const myChart = new Chart(
+                                        document.getElementById('myChart'),
+                                        config
+                                      );
+                                    </script>
                               
                                 
                             </div>
@@ -335,42 +320,18 @@
                               
                                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                                     <script type="text/JavaScript">
-                                   const data = {
-                                                        labels: labels,
-                                                        datasets: [
-                                                        {
-                                                        label: 'PatientsReceived',
-                                                        backgroundColor: 'rgb(255, 99, 132)',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        data: {{PatientsReceived|safe}},
-
-                                                        },  {
-                                                        label: 'PatientsNets',
-                                                        backgroundColor: 'rgb(	rgb(216,191,216))',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        data: {{PatientsNets|safe}},
-                                                        tension:0.4,
-                                                        type:'bar'
-
-                                                        },
-                                                        {
-                                                        label: 'PatientswithoutNets',
-                                                        backgroundColor: 'rgb(0,191,255)',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        data: {{PatientswithoutNets|safe}},
-                                                        },
-                                                        ]
-                                                    };
-                                                    
-                                                    const config = {
-                                                        type: 'bar',
-                                                        data: data,
-                                                        options: {}
-                                                    };
-                                                    const myChart = new Chart(
-                                                        document.getElementById('myChartz2019'),
-                                                        config
-                                                    );
+                                      var labelz  ={{labels|safe}}
+                                    
+                            
+                                      var configz = {
+                                        type: 'line',
+                                        data: data,
+                                        options: {}
+                                      };
+                                      var myChartz = new Chart(
+                                        document.getElementById('myChartz'),
+                                        configz
+                                      );
                                     </script>
                               
                                 <!--Place another chart.js here   -->

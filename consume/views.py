@@ -5,44 +5,42 @@ from django.shortcuts import render
 import urllib,json
 
 # Create your views here.
-url='https://api.covid19india.org/data.json'
+url='https://c630-41-89-192-24.ngrok.io/patients'
+
 
 def dashboard(request):
-    context={}
-    return render(request,'dashboard.html',context)
-
-
-def combined(request):
     res=urllib.request.urlopen(url)
-    data=json.loads(res.read())
+    datas=json.loads(res.read())
 
     labels=[]
-    chartdata=[]
+    years=[]
+    months=[]
+    PatientsReceived=[]
+    PatientsNets=[]
+    PatientswithoutNets=[]
+    counties=[]
 
-    for state in data['statewise']:
-        if state['state'] != 'Total' :
-             if state['state'] != 'Madhya Pradesh' :
-                if state['state'] != 'Lakshadweep' :
 
-                    labels.append(state['state'])
-                    chartdata.append(state['confirmed'])
-            
 
-    return render(request,'home.html',{'data':data,'labels':labels,'chartdata':chartdata})
+    for data in datas:
+        
+            labelling=data['County'] +'('+str(data['Month']) +')'
+            labels.append(labelling)
+            years.append (data['Year'])
+            counties.append (data['County'])
 
-def states(request):
-    res=urllib.request.urlopen(url)
-    data=json.loads(res.read())
+            months.append (data['Month'])
+            PatientsReceived.append (data['PatientsReceived'])
+            PatientsNets.append (data['PatientsNets'])
+            PatientswithoutNets.append (data['PatientswithoutNets'])
 
-    labels=[]
-    chartdata=[]
-    deathsdata=[]
-    activedata=[]
-    for state in data['statewise']:
-        if state['state'] != 'Total' :
-            labels.append(state['state'])
-            chartdata.append(state['confirmed'])
-            deathsdata.append(state['deaths'])
-            activedata.append(state['active'])
 
-    return render(request,'dashboard.html',{'data':data,'labels':labels,'chartdata':chartdata,'deathsdata':deathsdata,'activedata':activedata})
+
+     
+
+    return render(request,'dashboard.html',{'data':data,'labels':labels,'years':years,'months':months,'counties':counties,'PatientsReceived':PatientsReceived,'PatientsNets':PatientsNets,'PatientswithoutNets':PatientswithoutNets})
+
+
+
+
+
