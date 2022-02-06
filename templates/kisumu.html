@@ -114,7 +114,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="#"
+                                    <a href="vihiga"
                                         class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
                                         <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
                                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -126,7 +126,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="#"
+                                    <a href="busia"
                                         class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
                                         <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
                                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -221,8 +221,8 @@
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
                                 <!-- fill in data -->
-                                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">5,355</span>
-                                <h3 class="text-base font-sans text-gray-500">Number Of People To reach</h3>
+                                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{budgeted}}</span>
+                                <h3 class="text-base font-sans text-gray-500">Budgeted</h3>
                                 <!-- Dynamic Data fetched from endpoint -->
 
                             </div>
@@ -234,9 +234,9 @@
                     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
-                                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">2,340</span>
+                                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{issued}}</span>
                                 <!-- Dynamic Data fetched from endpoint -->
-                                <h3 class="text-base font-normal text-gray-500">Successful Distribution</h3>
+                                <h3 class="text-base font-normal text-gray-500">Issued</h3>
                             </div>
 
                         </div>
@@ -246,9 +246,9 @@
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
                                 <!-- dynamic -->
-                                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">3,014</span>
+                                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{pending}}</span>
                                 <!-- Dynamic data.Fetched from the endpoint -->
-                                <h3 class="text-base font-normal text-gray-500">pending Distribution</h3>
+                                <h3 class="text-base font-normal text-gray-500">Pending</h3>
                             </div>
 
                         </div>
@@ -260,61 +260,63 @@
                     <div class="pt-6 px-4">
                         <div class="w-full ">
 
-                            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  ">
 
                                 <!-- Replace main-chart with the chart.js -->
-                                <div class="" > 
+                                <div> 
                                     <h5 class="justify-center">2019 Dataset</h5>
                                     <canvas id="myChart2019"></canvas>
                                   </div>
-                                {% for year in years %}
-                                        {% if year == 2019 %}
-                                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                            <script type="text/JavaScript">
-                                            const labels  ={{labels|safe}}
-                                            
-                                            const data = {
-                                                labels: labels,
-                                                datasets: [
-                                                {
-                                                label: 'PatientsReceived',
-                                                backgroundColor: 'rgb(255, 99, 132)',
-                                                borderColor: 'rgb(255, 99, 132)',
-                                                data: {{PatientsReceived|safe}},
+                        
 
-                                                },  {
-                                                label: 'PatientsNets',
-                                                backgroundColor: 'rgb(	rgb(216,191,216))',
-                                                borderColor: 'rgb(	rgb(216,191,216))',
-                                                data: {{PatientsNets|safe}},
-                                           
 
-                                                },
-                                                {
-                                                label: 'PatientswithoutNets',
-                                                backgroundColor: 'rgb(0,191,255)',
-                                                borderColor: 'rgb(0,191,255)',
-                                                data: {{PatientswithoutNets|safe}},
-                                                },
-                                                ]
-                                            };
-                                            
-                                            const config = {
-                                                type: 'line',
-                                                data: data,
-                                                options: {}
-                                            };
-                                            const myChart = new Chart(
-                                                document.getElementById('myChart2019'),
-                                                config
-                                            );
-                                            </script>
-
-                                        {% endif %}
-                                {% endfor %}
-                              
-                              
+    
+                                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                        <script type="text/JavaScript">
+                                        const labels  ={{labels|safe}}
                                         
+                                        const data = {
+                                            labels: labels,
+                                            datasets: [
+                                            {
+                                            label: 'PatientsReceived',
+                                            backgroundColor: 'rgb(255, 99, 132)',
+                                            borderColor: 'rgb(255, 99, 132)',
+                                            data: {{PatientsReceived2019|safe}},
+
+                                            },  {
+                                            label: 'PatientsNets',
+                                            backgroundColor: 'rgb(	rgb(216,191,216))',
+                                            borderColor: 'rgb(	rgb(216,191,216))',
+                                            data: {{PatientsNets2019|safe}},
+                                        
+
+                                            },
+                                            {
+                                            label: 'PatientswithoutNets',
+                                            backgroundColor: 'rgb(0,191,255)',
+                                            borderColor: 'rgb(0,191,255)',
+                                            data: {{PatientswithoutNets2019|safe}},
+                                            },
+                                            ]
+                                        };
+                                        
+                                        const config = {
+                                            type: 'line',
+                                            data: data,
+                                            options: {
+                                                title:{
+                                                    display:true,
+                                                    text:'2019 Patients Data'
+                                                }
+                                            }
+                                        };
+                                        const myChart = new Chart(
+                                            document.getElementById('myChart2019'),
+                                            config
+                                        );
+                                        </script>
+                                                        
                                 
                               
                                 
@@ -325,22 +327,42 @@
                                 <div> 
                                     <canvas id="myChartz"></canvas>
                                   </div>
-                              
-                                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                    <script type="text/JavaScript">
-                                      var labelz  ={{labels|safe}}
-                                    
-                            
-                                      var configz = {
-                                        type: 'line',
-                                        data: data,
-                                        options: {}
-                                      };
-                                      var myChartz = new Chart(
-                                        document.getElementById('myChartz'),
-                                        configz
-                                      );
-                                    </script>
+                                  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                  <script type="text/JavaScript">
+                                  const labels2  ={{labels2|safe}}
+                                  
+                                  const data2 = {
+                                      labels: labels2,
+                                      datasets: [
+                                      {
+                                      label: 'netsProvided',
+                                      backgroundColor: 'rgb(255, 99, 132)',
+                                      borderColor: 'rgb(255, 99, 132)',
+                                      data: {{netsProvided|safe}},
+
+                                      },  {
+                                      label: 'netsIssued',
+                                      backgroundColor: 'rgb(	rgb(216,191,216))',
+                                      borderColor: 'rgb(	rgb(216,191,216))',
+                                      data: {{netsIssued|safe}},
+                                  
+
+                                      },
+                                      ]
+                                  };
+                                  
+                                  const config2 = {
+                                      type: 'bar',
+                                      data: data2,
+                                      options: {
+                                      }
+                                  };
+                                  const myChart2 = new Chart(
+                                      document.getElementById('myChartz'),
+                                      config2
+                                  );
+                                  </script>
+                                  
                               
                                 <!--Place another chart.js here   -->
                                 
@@ -370,11 +392,16 @@
                                                         </th>
                                                         <th scope="col"
                                                             class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Total LLINS distributed
+                                                           Budgeted
                                                         </th>
                                                         <th scope="col"
                                                             class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Pending Distribution
+                                                            Issued
+                                                        </th>
+
+                                                        <th scope="col"
+                                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                            Pending
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -392,13 +419,17 @@
 
                                                             <td
                                                                 class="p-4 whitespace-nowrap text-sm font-semibold text-gray-500">
-                                                                240,000
+                                                               350,722
                                                             </td>
 
                                                             <td
                                                                 class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                                                200,000
+                                                               266,834
                                                             </td>
+                                                            <td
+                                                            class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                                          48233
+                                                        </td>
                                                         </a>
                                                     </tr>
                                                     <tr class="bg-gray-50">
@@ -408,27 +439,34 @@
                                                         </td>
                                                         <td
                                                             class="p-4 whitespace-nowrap text-sm font-semibold text-gray-500">
-                                                            340,000
+                                                            350,792
                                                         </td>
                                                         <td
                                                             class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                                            300,000
+                                                            266,834
                                                         </td>
+
+                                                        <td
+                                                            class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                                           48,233
                                                     </tr>
                                                     <tr>
                                                         <td
-                                                            class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-
-                                                            <span>HomeBay</span>
-                                                        </td>
+                                                        class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+                                                        <span class="font-semibold">Busia</span>
+                                                    </td>
                                                         <td
                                                             class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                                            450,000
+                                                           323,000
                                                         </td>
                                                         <td
                                                             class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                                            400,000
+                                                            265,372
                                                         </td>
+                                                        <td
+                                                        class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                                        69233
+                                                    </td>
                                                     </tr>
 
 
