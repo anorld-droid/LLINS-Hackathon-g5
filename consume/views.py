@@ -21,8 +21,11 @@ def combined(request):
 
     for state in data['statewise']:
         if state['state'] != 'Total' :
-            labels.append(state['state'])
-            chartdata.append(state['confirmed'])
+             if state['state'] != 'Madhya Pradesh' :
+                if state['state'] != 'Lakshadweep' :
+
+                    labels.append(state['state'])
+                    chartdata.append(state['confirmed'])
             
 
     return render(request,'home.html',{'data':data,'labels':labels,'chartdata':chartdata})
@@ -42,4 +45,4 @@ def states(request):
             deathsdata.append(state['deaths'])
             activedata.append(state['active'])
 
-    return render(request,'states.html',{'data':data,'labels':labels,'chartdata':chartdata,'deathsdata':deathsdata,'activedata':activedata})
+    return render(request,'dashboard.html',{'data':data,'labels':labels,'chartdata':chartdata,'deathsdata':deathsdata,'activedata':activedata})
