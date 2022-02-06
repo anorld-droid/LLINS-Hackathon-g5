@@ -263,12 +263,13 @@
                             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
 
                                 <!-- Replace main-chart with the chart.js -->
-                                <div>
-                                    <h5 class="justify-center">2019 Dataset</h5>
-                                    <canvas id="myChart2019"></canvas>
-                                </div>
-                                {% for year in years %}
-                                {% if year == 2019 %}
+                            <div>
+                                <h5 class="justify-center">2019 Dataset</h5>
+                                <canvas id="myChart2019"></canvas>
+                            </div>
+
+                                {% for x in years %}
+                                    {% if year == 2021 %}
 
                                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                                 <script type="text/JavaScript">
@@ -311,7 +312,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'Kisumu,Vihiga,Busia  Data set .',
+                            text: 'Kisumu, Vihiga, Busia  Data set .',
                             color: '#666666',
                             font: {
                                 family: 'Comic Sans MS',
@@ -469,7 +470,7 @@
                                                         <td
                                                             class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
 
-                                                            <span></span>
+                                                            <span class="font-semibold">Busia</span>
                                                         </td>
                                                         <td
                                                             class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
