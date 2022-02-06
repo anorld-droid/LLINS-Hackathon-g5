@@ -24,7 +24,7 @@ def dashboard(request):
 
     for data in datas:
         
-            labelling=data['County'] +'('+str(data['Month']) +')'
+            labelling=data['County'] +'('+str(data['Month']) +')'+'('+str(data['Year']) +')'
             labels.append(labelling)
             years.append (data['Year'])
             counties.append (data['County'])
@@ -37,8 +37,41 @@ def dashboard(request):
 
 
      
-
+   
     return render(request,'dashboard.html',{'data':data,'labels':labels,'years':years,'months':months,'counties':counties,'PatientsReceived':PatientsReceived,'PatientsNets':PatientsNets,'PatientswithoutNets':PatientswithoutNets})
+
+def kisumu(request):
+    res=urllib.request.urlopen(url)
+    datas=json.loads(res.read())
+
+    labels=[]
+    years=[]
+    months=[]
+    PatientsReceived=[]
+    PatientsNets=[]
+    PatientswithoutNets=[]
+    counties=[]
+
+
+
+    for data in datas:
+        if data['County'] == 'kisumu':
+        
+            labelling=str(data['SubCounty']) +'('+str(data['Year']) +')'
+            labels.append(labelling)
+            years.append (data['Year'])
+            counties.append (data['County'])
+
+            months.append (data['Month'])
+            PatientsReceived.append (data['PatientsReceived'])
+            PatientsNets.append (data['PatientsNets'])
+            PatientswithoutNets.append (data['PatientswithoutNets'])
+
+
+
+     
+   
+    return render(request,'kisumu.html',{'data':data,'labels':labels,'years':years,'months':months,'counties':counties,'PatientsReceived':PatientsReceived,'PatientsNets':PatientsNets,'PatientswithoutNets':PatientswithoutNets})
 
 
 
