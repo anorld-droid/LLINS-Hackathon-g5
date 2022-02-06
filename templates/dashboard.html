@@ -273,62 +273,62 @@
                                   {% for data in datas %}
                                        {% for x,y in data.items %}
                                             {% if y == 2019 %}
-                                                <h1>{{y}}</h1>
+
+                                                {% if x == 2019 %}
+                                                    <h1>{{data.x}}</h1>
+                                                {% endif %}
                                             {% endif %}
                                         {% endfor %}
                                   {% endfor %}
                             
 
-                                {% for year in years %}
-                                        {% if year == 2019 %}
-                                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                            <script type="text/JavaScript">
-                                            const labels  ={{labels|safe}}
-                                            
-                                            const data = {
-                                                labels: labels,
-                                                datasets: [
-                                                {
-                                                label: 'PatientsReceived',
-                                                backgroundColor: 'rgb(255, 99, 132)',
-                                                borderColor: 'rgb(255, 99, 132)',
-                                                data: {{PatientsReceived|safe}},
+                            
+                                  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                  <script type="text/JavaScript">
+                                  const labels  ={{labels|safe}}
+                                  
+                                  const data = {
+                                      labels: labels,
+                                      datasets: [
+                                      {
+                                      label: 'PatientsReceived',
+                                      backgroundColor: 'rgb(255, 99, 132)',
+                                      borderColor: 'rgb(255, 99, 132)',
+                                      data: {{PatientsReceived|safe}},
 
-                                                },  {
-                                                label: 'PatientsNets',
-                                                backgroundColor: 'rgb(	rgb(216,191,216))',
-                                                borderColor: 'rgb(	rgb(216,191,216))',
-                                                data: {{PatientsNets|safe}},
-                                           
+                                      },  {
+                                      label: 'PatientsNets',
+                                      backgroundColor: 'rgb(	rgb(216,191,216))',
+                                      borderColor: 'rgb(	rgb(216,191,216))',
+                                      data: {{PatientsNets|safe}},
+                                 
 
-                                                },
-                                                {
-                                                label: 'PatientswithoutNets',
-                                                backgroundColor: 'rgb(0,191,255)',
-                                                borderColor: 'rgb(0,191,255)',
-                                                data: {{PatientswithoutNets|safe}},
-                                                },
-                                                ]
-                                            };
-                                            
-                                            const config = {
-                                                type: 'line',
-                                                data: data,
-                                                options: {
-                                                    title:{
-                                                        display:true,
-                                                        text:'2019 Patients Data'
-                                                    }
-                                                }
-                                            };
-                                            const myChart = new Chart(
-                                                document.getElementById('myChart2019'),
-                                                config
-                                            );
-                                            </script>
+                                      },
+                                      {
+                                      label: 'PatientswithoutNets',
+                                      backgroundColor: 'rgb(0,191,255)',
+                                      borderColor: 'rgb(0,191,255)',
+                                      data: {{PatientswithoutNets|safe}},
+                                      },
+                                      ]
+                                  };
+                                  
+                                  const config = {
+                                      type: 'line',
+                                      data: data,
+                                      options: {
+                                          title:{
+                                              display:true,
+                                              text:'2019 Patients Data'
+                                          }
+                                      }
+                                  };
+                                  const myChart = new Chart(
+                                      document.getElementById('myChart2019'),
+                                      config
+                                  );
+                                  </script>
 
-                                        {% endif %}
-                                {% endfor %}
                               
                               
                                         
