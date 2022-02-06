@@ -12,5 +12,5 @@ class PatientSerializer(serializers.ModelSerializer):
 class NetsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Net
-        fields = ['Year', 'Month', 'County', 'SubCounty', 'netsProvided'
+        fields = ['Year', 'Month', 'County', 'SubCounty', 'netsProvided',
                   'netsIssued']
