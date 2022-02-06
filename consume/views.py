@@ -38,7 +38,7 @@ def dashboard(request):
 
      
    
-    return render(request,'dashboard.html',{'data':data,'labels':labels,'years':years,'months':months,'counties':counties,'PatientsReceived':PatientsReceived,'PatientsNets':PatientsNets,'PatientswithoutNets':PatientswithoutNets})
+    return render(request,'dashboard.html',{'datas':datas,'labels':labels,'years':years,'months':months,'counties':counties,'PatientsReceived':PatientsReceived,'PatientsNets':PatientsNets,'PatientswithoutNets':PatientswithoutNets})
 
 def kisumu(request):
     res=urllib.request.urlopen(url)

@@ -267,6 +267,18 @@
                                     <h5 class="justify-center">2019 Dataset</h5>
                                     <canvas id="myChart2019"></canvas>
                                   </div>
+
+                           
+
+                                  {% for data in datas %}
+                                       {% for x,y in data.items %}
+                                            {% if y == 2019 %}
+                                                <h1>{{y}}</h1>
+                                            {% endif %}
+                                        {% endfor %}
+                                  {% endfor %}
+                            
+
                                 {% for year in years %}
                                         {% if year == 2019 %}
                                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -285,7 +297,7 @@
                                                 },  {
                                                 label: 'PatientsNets',
                                                 backgroundColor: 'rgb(	rgb(216,191,216))',
-                                                borderColor: 'rgb(255, 99, 132)',
+                                                borderColor: 'rgb(	rgb(216,191,216))',
                                                 data: {{PatientsNets|safe}},
                                            
 
@@ -293,7 +305,7 @@
                                                 {
                                                 label: 'PatientswithoutNets',
                                                 backgroundColor: 'rgb(0,191,255)',
-                                                borderColor: 'rgb(255, 99, 132)',
+                                                borderColor: 'rgb(0,191,255)',
                                                 data: {{PatientswithoutNets|safe}},
                                                 },
                                                 ]
@@ -302,7 +314,12 @@
                                             const config = {
                                                 type: 'line',
                                                 data: data,
-                                                options: {}
+                                                options: {
+                                                    title:{
+                                                        display:true,
+                                                        text:'2019 Patients Data'
+                                                    }
+                                                }
                                             };
                                             const myChart = new Chart(
                                                 document.getElementById('myChart2019'),
