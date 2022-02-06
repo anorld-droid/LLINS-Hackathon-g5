@@ -263,15 +263,16 @@
                             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
 
                                 <!-- Replace main-chart with the chart.js -->
-                                <div> 
+                                <div>
                                     <h5 class="justify-center">2019 Dataset</h5>
                                     <canvas id="myChart2019"></canvas>
-                                  </div>
+                                </div>
                                 {% for year in years %}
-                                        {% if year == 2019 %}
-                                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                            <script type="text/JavaScript">
-                                            const labels  ={{labels|safe}}
+                                {% if year == 2019 %}
+
+                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                <script type="text/JavaScript">
+                                    const labels  ={{labels|safe}}
                                             
                                             const data = {
                                                 labels: labels,
@@ -302,7 +303,56 @@
                                             const config = {
                                                 type: 'line',
                                                 data: data,
-                                                options: {}
+                                                options: {
+                scales: {
+                    x: {
+                        grid:{
+                            display:false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Kisumu,Vihiga,Busia  Data set .',
+                            color: '#666666',
+                            font: {
+                                family: 'Comic Sans MS',
+                                size: 20,
+                                weight: 'bold',
+                                lineHeight: 1.2,
+                            },
+                            padding: {
+                                top: 20,
+                                left: 0,
+                                right: 0,
+                                bottom: 0
+                            }
+                        }
+                    },
+                    y: {
+                        grid:{
+                            display:false
+                        },
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'User Data',
+                            color: '#666666',
+                            font: {
+                                family: 'Comic Sans MS',
+                                size: 20,
+                                weight: 'bold',
+                                lineHeight: 1.2,
+                            },
+                            padding: {
+                                top: 20,
+                                left: 0,
+                                right: 0,
+                                bottom: 0
+                            }
+                        }
+                    }
+
+                }
+            }
                                             };
                                             const myChart = new Chart(
                                                 document.getElementById('myChart2019'),
@@ -310,25 +360,25 @@
                                             );
                                             </script>
 
-                                        {% endif %}
+                                {% endif %}
                                 {% endfor %}
-                              
-                              
-                                        
-                                
-                              
-                                
+
+
+
+
+
+
                             </div>
 
 
                             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-1">
-                                <div> 
+                                <div>
                                     <canvas id="myChartz"></canvas>
-                                  </div>
-                              
-                                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                    <script type="text/JavaScript">
-                                      var labelz  ={{labels|safe}}
+                                </div>
+
+                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                <script type="text/JavaScript">
+                                    var labelz  ={{labels|safe}}
                                     
                             
                                       var configz = {
@@ -341,9 +391,9 @@
                                         configz
                                       );
                                     </script>
-                              
+
                                 <!--Place another chart.js here   -->
-                                
+
 
                             </div>
                         </div>
